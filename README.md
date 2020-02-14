@@ -14,9 +14,9 @@ Las peticiones a los recursos de la api son consumidas en
 
 `  http://localhost:8080/ `
 
-Checar la documentacion para consumir los recursos de la api en el documento 
+Revisar la documentacion para consumir los recursos de la api en el documento 
 
-` /Documentacion/index.html  `
+` server/Documentacion/index.html  `
 
 ## Arquitectura del sistema
 
