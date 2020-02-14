@@ -23,7 +23,7 @@ Revisar la documentacion para consumir los recursos de la api en el documento
 La prueba tecnica utiliza una arquitectura modelo vista controlador 
 
 1. Modelo: carpeta ` Data ` aqui se guardan todos los archivos de descripcion de los modelos de las bases de datos, en este caso se utilizo para guardar los datos en un archivo json.
-2. Vista: carpeta ` routes ` almacena los archivos que describen las rutas para consumir los recursos de la api 
+2. Vista: carpeta ` routes ` almacena los archivos que describen las rutas para consumir los recursos de la api contiene un middleware que sirve para autentificar a los usuarios utilizando jwt
 3. Controlador: carpeta ` controllers ` contiene los archivos de los metodos que se ejecutan para devolver los recursos solicitados por los clientes
 
 ## Librerias externas
