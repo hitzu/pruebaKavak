@@ -39,7 +39,7 @@
       "examples": [
         {
           "title": "Success",
-          "content": "{\n    \"balance\": [\n        {\n            \"account\": 455947030,\n            \"balance\": 100,\n            \"owner\": 7612123456,\n            \"password\": \"123456\",\n            \"createdAt\": \"2012-04-23T18:25:43.511Z\"\n        }\n    ]\n}",
+          "content": "{\n    \"balanceFound\": {\n        \"account\": 455947030,\n        \"balance\": 100,\n        \"owner\": 7612123456,\n        \"createdAt\": \"2012-04-23T18:25:43.511Z\"\n    }\n}",
           "type": "json"
         }
       ]
@@ -311,12 +311,12 @@
           "type": "json"
         },
         {
-          "title": "usuario invalido",
+          "title": "operacionInvalida",
           "content": "HTTP/1.1 403  \n{\n \"error\": \"operacionInvalida la cuenta destino no existe\"\n}",
           "type": "json"
         },
         {
-          "title": "usuario invalido",
+          "title": "recursosInsuficientes",
           "content": "HTTP/1.1 403  \n{\n \"error\": \"recursosInsuficientes, esta cuenta no tiene suficiente dinero\"\n}",
           "type": "json"
         },
@@ -441,7 +441,7 @@
       "examples": [
         {
           "title": "Success",
-          "content": "{\n    \"account\": [\n        {\n            \"account\": 987654321,\n            \"balance\": 45450,\n            \"owner\": 7612338352,\n            \"password\": \"123456\",\n            \"createdAt\": \"2012-04-23T18:25:43.511Z\"\n        }\n    ],\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NzYxMjMzODM1MiwiaWF0IjoxNTgxNjk2MzE5fQ.THJCB6VzuN47exq7VSXHkXcwpmwGbsxM9sGENMScOyU\"\n}",
+          "content": "{\n    \"account\": [\n        {\n            \"account\": 987654321,\n            \"balance\": 45450,\n            \"owner\": 7612338352,\n            \"createdAt\": \"2012-04-23T18:25:43.511Z\"\n        }\n    ],\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NzYxMjMzODM1MiwiaWF0IjoxNTgxNjk2MzE5fQ.THJCB6VzuN47exq7VSXHkXcwpmwGbsxM9sGENMScOyU\"\n}",
           "type": "json"
         }
       ]

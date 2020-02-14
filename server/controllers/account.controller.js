@@ -27,7 +27,9 @@ const getMyaccountBalance = (req,res)=>{
 	let balance = Data.Accounts.filter(e => {
 		return e.account == req.user.account
 	})
-	res.status(200).send({balance})
+	const balanceFound = {...balance[0]}
+	delete balanceFound.password
+	res.status(200).send({balanceFound})
 }
 
 

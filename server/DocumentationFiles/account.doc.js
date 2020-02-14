@@ -26,13 +26,13 @@
  *  "error": "permisoDenegado no tienes privilegios sobre esta cuenta"
  * }
  * @apiError operacionInvalida el numero de cuenta destino no existe
- * @apiErrorExample { json } usuario invalido
+ * @apiErrorExample { json } operacionInvalida
  * HTTP/1.1 403  
  * {
  *  "error": "operacionInvalida la cuenta destino no existe"
  * }
  * @apiError recursosInsuficientes la cuenta tiene menos de -500 
- * @apiErrorExample { json } usuario invalido
+ * @apiErrorExample { json } recursosInsuficientes
  * HTTP/1.1 403  
  * {
  *  "error": "recursosInsuficientes, esta cuenta no tiene suficiente dinero"
@@ -199,16 +199,13 @@
  * @apiSuccess { json } balance retorna un objeto con los datos de la cuenta
  * @apiSuccessExample { json } Success
  * {
-    "balance": [
-        {
-            "account": 455947030,
-            "balance": 100,
-            "owner": 7612123456,
-            "password": "123456",
-            "createdAt": "2012-04-23T18:25:43.511Z"
-        }
-    ]
-}
+    "balanceFound": {
+        "account": 455947030,
+        "balance": 100,
+        "owner": 7612123456,
+        "createdAt": "2012-04-23T18:25:43.511Z"
+    }
+ * }
  * @apiError Unauthorized token invalido
  * @apiErrorExample { json } Unauthorized
  * HTTP/1.1 401 Unauthorized 

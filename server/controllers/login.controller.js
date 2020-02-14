@@ -14,7 +14,8 @@ const logIn =  (req,res)=>{
     }
     let payload = {id:account[0].owner}
     let token = jwt.sign(payload,"secretString")
-    res.status(200).send({account:account[0],token})
+    const accountFound = delete account[0].password
+    res.status(200).send({account:accountFound,token})
   } catch (error) {
     if (error.name === "invalidLogin") {
       res.status(403).send({error:"invalidLogin"})
