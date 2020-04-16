@@ -1,11 +1,11 @@
 {
-  "name": "aiontech",
+  "name": "kavakbackend",
   "version": "1.0.0",
-  "description": "Prueba Tecnica para AIONTECH",
+  "description": "Prueba Tecnica para Kavak",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon ./server/index.js"
+    "start": "nodemon ./index.js"
   },
   "author": "Roberto Torres",
   "license": "ISC",
@@ -14,9 +14,11 @@
     "express": "^4.16.2",
     "ip": "^1.1.5",
     "jsonwebtoken": "^8.1.0",
+    "mysql2": "^2.1.0",
     "passport": "^0.4.0",
     "passport-custom": "^1.0.5",
-    "passport-jwt": "^3.0.1"
+    "passport-jwt": "^3.0.1",
+    "sequelize": "^5.21.6"
   },
   "devDependencies": {
     "nodemon": "^1.12.1"
