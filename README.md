@@ -1,4 +1,4 @@
-# Prueba Tecnica Para AIONTECH
+# Prueba Tecnica Para Kavak
 
 Back End con NodeJs
 
@@ -12,7 +12,7 @@ Back End con NodeJs
 
 Las peticiones a los recursos de la api son consumidas en 
 
-`  http://localhost:8080/ `
+`  http://localhost:3000/ `
 
 Revisar la documentacion para consumir los recursos de la api en el documento 
 
@@ -22,16 +22,15 @@ Revisar la documentacion para consumir los recursos de la api en el documento
 
 La prueba tecnica utiliza una arquitectura modelo vista controlador 
 
-1. Modelo: carpeta ` Data ` aqui se guardan todos los archivos de descripcion de los modelos de las bases de datos, en este caso se utilizo para guardar los datos en un archivo json.
-2. Vista: carpeta ` routes ` almacena los archivos que describen las rutas para consumir los recursos de la api contiene un middleware que sirve para autentificar a los usuarios utilizando jwt
+1. Modelo: carpeta ` models ` aqui se guardan todos los archivos de descripcion de los modelos de las bases de datos utilizados por sequelize.
+2. Vista: carpeta ` routes ` almacena los archivos que describen las rutas para consumir los recursos de la api
 3. Controlador: carpeta ` controllers ` contiene los archivos de los metodos que se ejecutan para devolver los recursos solicitados por los clientes
 
 ## Librerias externas
 
 1. [ApiDoc](https://apidocjs.com/) : Crea la documentacion de RESTFUls web APIs
-2. [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken) : Crea los tokens para autenticar a los usuarios mediante token
-3. [passportjs](http://www.passportjs.org/) : Administrador de estrategias de seguridad
-3. [passport-jwt](http://www.passportjs.org/packages/passport-jwt/) : Permite crear las estrategias de autenticacion por token
+2. [sequelize](https://sequelize.org/) : ORM para MySql, permite mapear las estructuras de bases de datos y convertirlos objetos json
+3. [nodemon](https://nodemon.io/) : Permite reiniciar automaticamente el servidor en cada cambio para un desarrollo mas rapido.
 
 
 ## License
