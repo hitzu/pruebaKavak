@@ -28,19 +28,18 @@ const updateAlbum = async (req,res)=>{
 
 		const doesntHaveTracksIDs = doesntHaveTracks.map(album => album.id)
 
-		console.log(doesntHaveTracksIDs)
 
-		// console.log(doesntHaveTracks)
+		const promises = []
 
-		var promises = []
-
-		doesntHaveTracks.forEach((albumId) =>{
-			promises.push(Album.update({status : 0 }, {where : {id : doesntHaveTracksIDs } }))
+		doesntHaveTracksIDs.forEach((albumId) =>{
+			promises.push(Album.update({status : 0 }, {where : {id : albumId }}))
 		})
 
 		await Promise.all(promises)
 
-		res.status(200).send({ updateAlbum : true  })
+		const albumsUpdated = await Album.findAll({where : { id : { [Op.in] :  doesntHaveTracksIDs} }})
+
+		res.status(200).send({ updateAlbum : albumsUpdated  })
 
 	}catch (error) {
 		res.status(500).send({error:error.message})
