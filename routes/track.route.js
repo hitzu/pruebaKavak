@@ -8,6 +8,8 @@ var api = express.Router();
 
 api.get('/withOutArtist/:sort', trackController.getTracksWithOutArtist);
 
+api.get('/getGenreAndAlbum/:sort', trackController.getGenreAndAlbum);
+
 api.get('/', trackController.getAllTracks);
 
 

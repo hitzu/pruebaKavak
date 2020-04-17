@@ -12,6 +12,35 @@ const createTrack = async (req,res)=>{
 	}
 }
 
+const getGenreAndAlbum = async (req,res)=>{
+	try{
+		const {sort} = req.params
+		
+		if (sort != 'ASC' && sort != 'DESC'){
+			throw {message : "order dont allow "}
+		}
+
+		const TracksFound = await Track.findAll({
+			order: [ ['title', sort] ],
+			include : [{
+				model : Album,
+				}
+			],
+		})
+		const areDiferentes = TracksFound.map((track) => {
+			if (track.genre !== track.album.genre){
+				return track
+			}
+		})
+		const clearNull = areDiferentes.filter( (value => value != null))
+		res.status(200).send({ tracks: clearNull })
+	
+	
+	}catch (error) {
+		res.status(500).send({error:error.message})
+	}
+}
+
 const getTracksWithOutArtist = async (req,res)=>{
 	try{
 
@@ -103,5 +132,6 @@ const deleteAllTracks = (req,res)=>{
 module.exports = {
 	getAllTracks,
 	updateTrack,
-	getTracksWithOutArtist
+	getTracksWithOutArtist,
+	getGenreAndAlbum
 }
