@@ -21,13 +21,9 @@ module.exports = (sequelize, Sequelize) => {
         genre : {
             type : Sequelize.STRING
         },
-        // userid : {
-        //     type: Sequelize.INTEGER,
-        //     references: {
-        //         model : 'users',
-        //         key: 'id'
-        //     }
-        // },
+        status : {
+            type : Sequelize.BOOLEAN
+        }
     },{
 		timestamps: false
 	})

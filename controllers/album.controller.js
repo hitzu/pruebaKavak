@@ -1,6 +1,6 @@
 'use strict'
 const db = require("../models");
-const { Album, User } = db
+const { Album, User, Track } = db
 const Op = db.Sequelize.Op
 
 
@@ -12,12 +12,47 @@ const createAlbum = async (req,res)=>{
 	}
 }
 
-const updateAlbum = (req,res)=>{
-	
+const updateAlbum = async (req,res)=>{
+	try{
+		const tracks = await Track.findAll(
+		{
+			attributes: ['albumid']
+		})
+		const trackssId = tracks.map(track => track.albumid)
+
+		const doesntHaveTracks = await Album.findAll({
+			where : {
+				id : {[Op.notIn] : trackssId}
+			}
+		})
+
+		const doesntHaveTracksIDs = doesntHaveTracks.map(album => album.id)
+
+		console.log(doesntHaveTracksIDs)
+
+		// console.log(doesntHaveTracks)
+
+		var promises = []
+
+		doesntHaveTracks.forEach((albumId) =>{
+			promises.push(Album.update({status : 0 }, {where : {id : doesntHaveTracksIDs } }))
+		})
+
+		await Promise.all(promises)
+
+		res.status(200).send({ updateAlbum : true  })
+
+	}catch (error) {
+		res.status(500).send({error:error.message})
+	}
 }
 
-const getAlbum = (req,res)=>{
-	
+const getAlbum = async (req,res)=>{
+	try{
+		
+	}catch (error) {
+		res.status(500).send({error:error.message})
+	}
 }
 
 const getAlbumByUserCountryAndGenre = async (req,res)=>{
@@ -65,4 +100,5 @@ const deleteAllAlbums = (req,res)=>{
 
 module.exports = {
 	getAlbumByUserCountryAndGenre,
+	updateAlbum
 }

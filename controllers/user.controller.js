@@ -7,27 +7,26 @@ const Op = db.Sequelize.Op
 
 const createUser = async (req,res)=>{
 	try{
-		const [name, email, country] = req.body
-
-		const user = {
-			name : name,
-			email : email,
-			country : country
-		}
-
-		User.create(user).then((req) => {
-			res.status(200).send({ user: req }) })
+		
 	}catch (error) {
 		res.status(500).send({error:error.message})
 	}
 }
 
-const updateUser = (req,res)=>{
-	
+const updateUser = async (req,res)=>{
+	try{
+		
+	}catch (error) {
+		res.status(500).send({error:error.message})
+	}
 }
 
 const getUser = (req,res)=>{
-	
+	try{
+		
+	}catch (error) {
+		res.status(500).send({error:error.message})
+	}
 }
 
 const getAllUsers = async (req,res)=>{
