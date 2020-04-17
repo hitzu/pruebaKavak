@@ -19,7 +19,7 @@ const createTrack = async (req,res)=>{
 		})
 
 		const newTrack = await track.save()
-		res.status(200).send({ user: newTrack })
+		res.status(200).send({ track: newTrack })
 	}catch (error) {
 		res.status(500).send({error:error.message})
 	}
@@ -96,9 +96,9 @@ const updateTrack = async (req,res)=>{
 	}
 }
 
-const getTrack = (req,res)=>{
+const getTrack = async (req,res)=>{
 	try{
-		
+		res.status(200).send({album : await Track.findOne({where : {id : req.params.trackId }})})
 	}catch (error) {
 		res.status(500).send({error:error.message})
 	}
@@ -112,6 +112,7 @@ const getAllTracks = async (req,res)=>{
 			],
 			include : [{
 				model : Album,
+				as : 'album'
 			}],
 			include : [{
 				model : User,	
@@ -147,5 +148,6 @@ module.exports = {
 	getAllTracks,
 	updateTrack,
 	getTracksWithOutArtist,
-	getGenreAndAlbum
+	getGenreAndAlbum,
+	getTrack
 }

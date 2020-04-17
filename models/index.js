@@ -30,7 +30,8 @@ db.Country = require("./country.model")(sequelize, Sequelize);
 // })
 // db.Track.belongsTo(db.Album)
 db.Track.belongsTo(db.Album,{
-  foreignKey : "albumid"
+  foreignKey : "albumid",
+  as : "album"
 })
 db.Track.belongsTo(db.User,{
   foreignKey : "userid"

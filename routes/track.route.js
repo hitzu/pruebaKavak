@@ -11,7 +11,7 @@ api.post('/',  Authenticator.authenticate("jwt",{session:false}), trackControlle
 api.get('/withOutArtist/:sort', trackController.getTracksWithOutArtist);
 
 api.get('/getGenreAndAlbum/:sort', trackController.getGenreAndAlbum);
-
+api.get('/:trackId', trackController.getTrack);
 api.get('/', trackController.getAllTracks);
 
 

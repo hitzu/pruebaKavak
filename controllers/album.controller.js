@@ -1,6 +1,6 @@
 'use strict'
 const db = require("../models");
-const { Album, User, Track } = db
+const { Album, User, Track, Country} = db
 const Op = db.Sequelize.Op
 
 
@@ -64,7 +64,7 @@ const updateAlbum = async (req,res)=>{
 
 const getAlbum = async (req,res)=>{
 	try{
-		
+		res.status(200).send({album : await Album.findOne({where : {id : req.params.albumId }})})
 	}catch (error) {
 		res.status(500).send({error:error.message})
 	}
@@ -83,6 +83,7 @@ const getAlbumByUserCountryAndGenre = async (req,res)=>{
 			where : {countryCode : codeCountry},
 			attributes: ['id']
 		})
+		console.log("desde aqui",userFound)
 		const userId = userFound.map(user => user.id)
 		
 		const albumsFounds = await Album.findAll({
@@ -92,9 +93,8 @@ const getAlbumByUserCountryAndGenre = async (req,res)=>{
 			},
 			order: [ ['title', sort] ],
 			include : [{
-				model : "usersid",
-				required: false },
-			],
+				model : User
+			}],
 		})
 
 		res.status(200).send({ albums: albumsFounds })
@@ -116,5 +116,6 @@ const deleteAllAlbums = (req,res)=>{
 module.exports = {
 	getAlbumByUserCountryAndGenre,
 	updateAlbum,
-	createAlbum
+	createAlbum,
+	getAlbum
 }

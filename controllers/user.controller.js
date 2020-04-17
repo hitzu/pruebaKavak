@@ -53,9 +53,10 @@ const updateUser = async (req,res)=>{
 	}
 }
 
-const getUser = (req,res)=>{
+const getUser = async (req,res)=>{
 	try{
 		
+		res.status(200).send({user : await User.findOne({where : {id : req.params.userId} })})
 	}catch (error) {
 		res.status(500).send({error:error.message})
 	}
@@ -83,5 +84,6 @@ const deleteAllUsers = (req,res)=>{
 module.exports = {
 	createUser,
 	getAllUsers,
-	updateUser
+	updateUser,
+	getUser
 }

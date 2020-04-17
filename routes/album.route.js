@@ -8,8 +8,8 @@ var api = express.Router();
 
 api.post('/',  Authenticator.authenticate("jwt",{session:false}), albumController.createAlbum);
 
-api.get('/byUserCountryAndGenre/:codeCountry/:genre/:sort', albumController.getAlbumByUserCountryAndGenre)
-
 api.put('/', Authenticator.authenticate("jwt",{session:false}), albumController.updateAlbum)
 
+api.get('/byUserCountryAndGenre/:codeCountry/:genre/:sort', albumController.getAlbumByUserCountryAndGenre)
+api.get('/:albumId', albumController.getAlbum)
 module.exports = api;

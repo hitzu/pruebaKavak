@@ -7,6 +7,7 @@ var api = express.Router();
 api.post('/', userController.createUser);
 api.put('/', Authenticator.authenticate("jwt",{session:false}), userController.updateUser)
 api.get('/allUsers', userController.getAllUsers);
+api.get('/:userId', userController.getUser);
 
 
 module.exports = api;
