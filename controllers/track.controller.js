@@ -1,57 +1,71 @@
 'use strict'
 const db = require("../models");
-const { Track, User } = db
+const { Track, User, Country, Album } = db
 const Op = db.Sequelize.Op
 
 
-const createUser = async (req,res)=>{
+const createTrack = async (req,res)=>{
 	try{
-		const [name, email, country] = req.body
-
-		const user = {
-			name : name,
-			email : email,
-			country : country
-		}
-
-		User.create(user).then((req) => {
-			res.status(200).send({ user: req }) })
+		
 	}catch (error) {
 		res.status(500).send({error:error.message})
 	}
 }
 
-const updateUser = (req,res)=>{
-	
+const updateTrack = (req,res)=>{
+	try{
+		
+	}catch (error) {
+		res.status(500).send({error:error.message})
+	}
 }
 
-const getUser = (req,res)=>{
-	
+const getTrack = (req,res)=>{
+	try{
+		
+	}catch (error) {
+		res.status(500).send({error:error.message})
+	}
 }
 
 const getAllTracks = async (req,res)=>{
 	try {
-        console.log("entro jajaja")
 		const tracksFound = await Track.findAll({
-			include : ["users"]
+			attributes: [
+				'id', 'title'
+			],
+			include : [{
+				model : Album,
+			}],
+			include : [{
+				model : User,	
+			}]
 		})
-		res.status(200).send({ user: tracksFound })
+		
+		res.status(200).send({ tracks: tracksFound })
 	} catch (error) {
 		res.status(500).send({error:error.message})
 	}
 }
 
-const deleteUser = (req,res)=>{
-	
+const deleteTrack = (req,res)=>{
+	try{
+		
+	}catch (error) {
+		res.status(500).send({error:error.message})
+	}
 }
 
-const deleteAllUsers = (req,res)=>{
-	
+const deleteAllTracks = (req,res)=>{
+	try{
+		
+	}catch (error) {
+		res.status(500).send({error:error.message})
+	}
 }
 
 
 
 module.exports = {
-	createUser,
 	getAllTracks
 }

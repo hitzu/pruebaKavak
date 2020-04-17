@@ -14,13 +14,13 @@ module.exports = (sequelize, Sequelize) => {
         isrc : {
             type : Sequelize.STRING
         },
-        albumid : {
-            type: Sequelize.INTEGER,
-            references: {
-                model : 'albums',
-                key: 'id'
-            }
-        },
+        // albumid : {
+        //     type: Sequelize.INTEGER,
+        //     references: {
+        //         model : 'albums',
+        //         key: 'id'
+        //     }
+        // },
         genre : {
             type : Sequelize.STRING
         },

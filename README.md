@@ -1,10 +1,10 @@
 # Prueba Tecnica Para Kavak
 
-Back End con NodeJs
+Back End con NodeJs y MySql
 
 ## Instalacion
 
-1. Clonar repositorio ` https://github.com/hitzu/PruebaAiontech.git `
+1. Clonar repositorio ` https://github.com/hitzu/pruebaKavak.git `
 2. Instalar todas las dependencias con ` npm install `
 3. Levantar el servidor con ` npm start `
 

@@ -24,11 +24,18 @@ db.Album = require("./albums.model")(sequelize, Sequelize);
 db.Track = require("./tracks.model")(sequelize, Sequelize);
 db.Country = require("./country.model")(sequelize, Sequelize);
 
-// db.User.hasMany(db.Album)
-// db.User.hasMany(db.Track)
-// db.Album.hasMany(db.Track)
-db.Track.belongsTo(db.User,{
-  foreignKey : "userid",
-  as : "users"
+// db.Album.belongsTo(db.User,{
+//   foreignKey : "userid",
+//   as : "users"
+// })
+// db.Track.belongsTo(db.Album)
+db.Track.belongsTo(db.Album,{
+  foreignKey : "albumid"
 })
+db.Track.belongsTo(db.User,{
+  foreignKey : "userid"
+})
+
+
 module.exports = db;
+

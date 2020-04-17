@@ -5,6 +5,7 @@ const app = express();
 const routeLogin=require ("./routes/login.route");
 const routeUser=require ("./routes/user.route");
 const routeTrack=require ("./routes/track.route");
+const routeAlbum=require ("./routes/album.route");
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json());
 
@@ -17,7 +18,8 @@ app.use((req,res,next)=>{
 });
 
 app.use("/login",routeLogin);
-app.use("/user",routeUser);
-app.use("/track",routeTrack);
+app.use("/users",routeUser);
+app.use("/tracks",routeTrack);
+app.use("/albums",routeAlbum);
 
 module.exports= app;

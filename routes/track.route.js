@@ -5,7 +5,7 @@ const trackController = require("../controllers/track.controller");
 
 var api = express.Router();
 
-api.get('/all', trackController.getAllTracks);
+api.get('/', trackController.getAllTracks);
 
 
 module.exports = api;
