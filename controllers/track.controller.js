@@ -6,7 +6,20 @@ const Op = db.Sequelize.Op
 
 const createTrack = async (req,res)=>{
 	try{
-		
+		const { title, artist, isrc, albumid, genre, } = req.body
+		const userid = req.user.id
+
+		const track = Track.build({
+			title : title, 
+			artist : artist, 
+			isrc : isrc, 
+			albumid : albumid, 
+			genre : genre, 
+			userid : userid
+		})
+
+		const newTrack = await track.save()
+		res.status(200).send({ user: newTrack })
 	}catch (error) {
 		res.status(500).send({error:error.message})
 	}
@@ -130,6 +143,7 @@ const deleteAllTracks = (req,res)=>{
 
 
 module.exports = {
+	createTrack,
 	getAllTracks,
 	updateTrack,
 	getTracksWithOutArtist,

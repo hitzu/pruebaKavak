@@ -6,7 +6,23 @@ const Op = db.Sequelize.Op
 
 const createAlbum = async (req,res)=>{
 	try{
-		
+		const { title, artist, label, upc, genre } = req.body
+		const userid = req.user.id
+		console.log(userid)
+
+		const album = Album.build({
+			title : title, 
+			artist : artist, 
+			label : label, 
+			upc : upc, 
+			genre : genre, 
+			userid : req.user.id
+		})
+
+		console.log(album)
+
+		const newAlbum = await album.save()
+		res.status(200).send({ album: newAlbum })
 	}catch (error) {
 		res.status(500).send({error:error.message})
 	}
@@ -99,5 +115,6 @@ const deleteAllAlbums = (req,res)=>{
 
 module.exports = {
 	getAlbumByUserCountryAndGenre,
-	updateAlbum
+	updateAlbum,
+	createAlbum
 }

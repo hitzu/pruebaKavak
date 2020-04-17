@@ -35,6 +35,9 @@ db.Track.belongsTo(db.Album,{
 db.Track.belongsTo(db.User,{
   foreignKey : "userid"
 })
+db.Album.belongsTo(db.User,{
+  foreignKey : "userid"
+})
 
 
 module.exports = db;

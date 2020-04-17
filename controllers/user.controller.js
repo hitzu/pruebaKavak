@@ -6,7 +6,18 @@ const Op = db.Sequelize.Op
 
 const createUser = async (req,res)=>{
 	try{
-		
+
+		const { name, email, countryCode } = req.body
+
+		const user = User.build({
+			name : name,
+			email : email,
+			countryCode : countryCode,
+		})
+
+		const newUser = await user.save()
+		res.status(200).send({ user: newUser })
+
 	}catch (error) {
 		res.status(500).send({error:error.message})
 	}
