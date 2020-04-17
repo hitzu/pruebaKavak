@@ -1,5 +1,6 @@
 'use strict'
-const Data = require("../models/user.model");
+const db = require("../models");
+const { User } = db
 var passport = require("passport");
 var passportJWT = require("passport-jwt");
 
@@ -14,12 +15,15 @@ var JwtStrategy = passportJWT.Strategy;
 const accountAuthentication = new JwtStrategy(jwtOptions, async (jwt_payload, next) =>{
     console.log('new authenticated request with payload:', jwt_payload);
     try {
-        let account = Data.Accounts.filter(el=>{ return el.owner === jwt_payload.id })
-        if (account.length) {
-            next(null, account[0]);
-        } else {
+        console.log(jwt_payload.id)
+        let userFound = await User.findOne({where : {id : jwt_payload.id}})
+        if(userFound){
+            next(null, userFound);
+        }
+        else{
             next(null, false);
         }
+
     } catch (error) {
         next(error, false);
     }

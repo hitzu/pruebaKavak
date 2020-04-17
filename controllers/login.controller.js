@@ -1,21 +1,25 @@
 'use strict'
-const Data = require("../models/user.model");
+const db = require("../models");
+const { User } = db
 const jwt = require("jsonwebtoken");
 
-const logIn =  (req,res)=>{
+const logIn = async (req,res)=>{
   try {
     
-    var {user,password} = req.body
+    var {email} = req.body
 
-    let account = Data.Accounts.filter(el=>{return (el.password == password && user == el.owner) || (el.password == password && user == el.account)}) 
+    const account = await User.findOne(
+    {
+      where : {email : email},
+    })
+    console.log(account)
     
-    if (!account.length) {
+    if (!account) {
       throw {name:"invalidLogin"}
     }
-    let payload = {id:account[0].owner}
+    let payload = {id:account.id}
     let token = jwt.sign(payload,"secretString")
-    const accountFound = delete account[0].password
-    res.status(200).send({account:accountFound,token})
+    res.status(200).send({account:account,token})
   } catch (error) {
     if (error.name === "invalidLogin") {
       res.status(403).send({error:"invalidLogin"})
