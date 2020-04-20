@@ -12,7 +12,9 @@ module.exports = (sequelize, Sequelize) => {
             type : Sequelize.STRING
         }
     },{
-		timestamps: false
+        timestamps: false,
+        freezeTableName: true,
+        tableName: 'country'
 	})
 
     return Country
