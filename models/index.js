@@ -34,7 +34,7 @@ db.Track.belongsTo(db.Album,{
   as : "album"
 })
 db.Track.belongsTo(db.User,{
-  foreignKey : "userid"
+  foreignKey : "userid",
 })
 db.Album.belongsTo(db.User,{
   foreignKey : "userid"

@@ -37,8 +37,16 @@ const getGenreAndAlbum = async (req,res)=>{
 			order: [ ['title', sort] ],
 			include : [{
 				model : Album,
-				}
-			],
+				as : 'album',
+				attributes: [
+					'title'
+				],
+			},{
+				model : User,
+				attributes: [
+					'email', 'countrycode'
+				],
+			}],
 		})
 		const areDiferentes = TracksFound.map((track) => {
 			if (track.genre !== track.album.genre){
@@ -47,6 +55,43 @@ const getGenreAndAlbum = async (req,res)=>{
 		})
 		const clearNull = areDiferentes.filter( (value => value != null))
 		res.status(200).send({ tracks: clearNull })
+	
+	
+	}catch (error) {
+		res.status(500).send({error:error.message})
+	}
+}
+
+const getByAlbum = async (req,res)=>{
+	try{
+		const {albumid, sort} = req.params
+		
+		if (sort != 'ASC' && sort != 'DESC'){
+			throw {message : "order dont allow "}
+		}
+
+		const TracksFound = await Track.findAll({
+			where : { albumid : albumid },
+			attributes: [
+				'id', 'title'
+			],
+			include : [{
+				model : Album,
+				as : 'album',
+				attributes: [
+					'title'
+				],
+			},{
+				model : User,
+				attributes: [
+					'email', 'countrycode'
+				],
+			}],
+			
+			order: [ ['title', sort] ],
+		})
+
+		res.status(200).send({ tracks: TracksFound })
 	
 	
 	}catch (error) {
@@ -98,7 +143,24 @@ const updateTrack = async (req,res)=>{
 
 const getTrack = async (req,res)=>{
 	try{
-		res.status(200).send({album : await Track.findOne({where : {id : req.params.trackId }})})
+		res.status(200).send({album : await Track.findOne(
+			{where : {id : req.params.trackId },
+			attributes: [
+				'id', 'title'
+			],
+			include : [{
+				model : Album,
+				as : 'album',
+				attributes: [
+					'title'
+				],
+			},{
+				model : User,
+				attributes: [
+					'email', 'countrycode'
+				],
+			}],
+		})})
 	}catch (error) {
 		res.status(500).send({error:error.message})
 	}
@@ -112,11 +174,16 @@ const getAllTracks = async (req,res)=>{
 			],
 			include : [{
 				model : Album,
-				as : 'album'
+				as : 'album',
+				attributes: [
+					'title'
+				],
+			},{
+				model : User,
+				attributes: [
+					'email', 'countrycode'
+				],
 			}],
-			include : [{
-				model : User,	
-			}]
 		})
 		
 		res.status(200).send({ track: tracksFound })
@@ -149,5 +216,6 @@ module.exports = {
 	updateTrack,
 	getTracksWithOutArtist,
 	getGenreAndAlbum,
-	getTrack
+	getTrack,
+	getByAlbum
 }
