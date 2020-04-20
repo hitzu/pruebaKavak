@@ -10,6 +10,7 @@ api.post('/',  Authenticator.authenticate("jwt",{session:false}), albumControlle
 
 api.put('/', Authenticator.authenticate("jwt",{session:false}), albumController.updateAlbum)
 
+api.get('/genres', albumController.getAllGenres)
 api.get('/byUserCountryAndGenre/:codeCountry/:genre/:sort', albumController.getAlbumByUserCountryAndGenre)
 api.get('/:albumId', albumController.getAlbum)
 module.exports = api;

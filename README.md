@@ -4,9 +4,10 @@ Back End con NodeJs y MySql
 
 ## Instalacion
 
-1. Clonar repositorio ` https://github.com/hitzu/pruebaKavak.git `
-2. Instalar todas las dependencias con ` npm install `
-3. Levantar el servidor con ` npm start `
+1. Migrar db_musical.sql <- IMPORTANTE "Sequelize actualiza el nombre de las tablas a sus plurales, por eso se actualizo "country" a "countries"
+2. Clonar repositorio ` https://github.com/hitzu/pruebaKavak.git `
+3. Instalar todas las dependencias con ` npm install `
+4. Levantar el servidor con ` npm start `
 
 ## Uso
 

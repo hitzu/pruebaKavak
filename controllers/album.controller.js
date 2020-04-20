@@ -7,8 +7,6 @@ const Op = db.Sequelize.Op
 const createAlbum = async (req,res)=>{
 	try{
 		const { title, artist, label, upc, genre } = req.body
-		const userid = req.user.id
-		console.log(userid)
 
 		const album = Album.build({
 			title : title, 
@@ -19,7 +17,6 @@ const createAlbum = async (req,res)=>{
 			userid : req.user.id
 		})
 
-		console.log(album)
 
 		const newAlbum = await album.save()
 		res.status(200).send({ album: newAlbum })
@@ -78,19 +75,19 @@ const getAlbumByUserCountryAndGenre = async (req,res)=>{
 			throw {message : "order dont allow "}
 		}
 
+		let contry = codeCountry != "all" ? {countryCode : codeCountry} : null
+
 		const userFound = await User.findAll(
 		{
-			where : {countryCode : codeCountry},
+			where : contry,
 			attributes: ['id']
 		})
-		console.log("desde aqui",userFound)
 		const userId = userFound.map(user => user.id)
+
+		let genreToFilter = genre != "all" ? { userid : userId, genre : genre } : codeCountry != "all" ? { userid : userId } : null
 		
 		const albumsFounds = await Album.findAll({
-			where : {
-				userid : userId,
-				genre : genre,
-			},
+			where : genreToFilter,
 			order: [ ['title', sort] ],
 			include : [{
 				model : User
@@ -102,6 +99,19 @@ const getAlbumByUserCountryAndGenre = async (req,res)=>{
 		res.status(500).send({error:error.message})
 	}
 }
+
+const getAllGenres = async (req,res) => {
+	try {
+		const albumsGeners = await Album.findAll({ attributes : ['genre'] })
+		const genreArray = albumsGeners.map(genre => genre.genre)
+		console.log(genreArray)
+		
+		res.status(200).send({ albums : [...new Set(genreArray)] })
+	} catch (error) {
+		res.status(500).send({error:error.message})
+	}
+}
+
 
 const deleteAlbum = (req,res)=>{
 	
@@ -117,5 +127,6 @@ module.exports = {
 	getAlbumByUserCountryAndGenre,
 	updateAlbum,
 	createAlbum,
-	getAlbum
+	getAlbum,
+	getAllGenres
 }
